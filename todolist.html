@@ -5,6 +5,101 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TodoList</title>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', ()=> {
+            const addtodolist = () => {
+                if(input.value !== ''){
+                    const div = document.createElement('div')
+                    document.body.appendChild(div)
+
+                    const checkbox = document.createElement('input')
+                    checkbox.type = 'checkbox'
+                    checkbox.addEventListener('change', () => {
+                        if(checkbox.checked){
+                            div.style.textDecoration = 'line-through'
+                        } else {
+                            div.style.textDecoration = ''
+                        }
+                    })
+                    div.appendChild(checkbox)
+
+                    const span = document.createElement('span')
+                    span.textContent = input.value
+                    input.value = ''
+                    div.appendChild(span)
+
+                    const deletebox = document.createElement('button')
+                    deletebox.textContent = '제거하기'
+                    deletebox.addEventListener('click', () => {
+                        div.parentNode.removeChild(div)
+                    })
+                    div.appendChild(deletebox)
+
+                }
+            }
+
+
+
+            // 제목, 입력, 버튼 생성
+            const h1 = document.createElement('h1')
+            h1.textContent = 'To do List'
+            document.body.appendChild(h1)
+
+            const input = document.createElement('input')
+            input.addEventListener('keyup', (e) => {
+                if(e.keyCode == 13){
+                    addtodolist()
+                }
+            })
+            document.body.appendChild(input)
+
+            const addbtn = document.createElement('button')
+            addbtn.textContent = '추가하기'
+            document.body.appendChild(addbtn)
+            addbtn.addEventListener('click', () => {
+                if(input.value !== ''){
+                    addtodolist()
+                }
+            })
+
+            //추가하기 버튼 사용하기
+            addbtn.addEventListener('click', () => {
+                // addbtn클릭시 input 공란으로 만들기
+                if(input.value !== ''){
+                    const div = document.createElement('div')
+                    document.body.appendChild(div)
+
+                    //checkbox 선긋기
+                    const checkbox = document.createElement('input')
+                    checkbox.type = 'checkbox'
+                    checkbox.addEventListener('change', () => {
+                        if(checkbox.checked){
+                            div.style.textDecoration = 'line-through'
+                        } else {
+                            div.style.textDecoration = ''
+                        }
+                    })
+                    // div tag에 붙이기
+                    div.appendChild(checkbox)
+
+                    const span = document.createElement('span')
+                    span.textContent = input.value
+                    input.value = ''
+                    div.appendChild(span)
+
+                    // deletebutton 제거
+                    const deletebox = document.createElement('button')
+                    deletebox.textContent = '제거하기'
+                    deletebox.addEventListener('click', () => {
+                        div.parentNode.removeChild(div)
+                    })
+                    div.appendChild(deletebox)
+                }
+            })
+            document.body.appendChild(addbtn)
+        })
+    </script>
 </head>
 <body>
     
